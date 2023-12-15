@@ -4,8 +4,8 @@ use serde::{Deserialize, Serialize};
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub struct EngineOption {
-    name: Box<str>,
-    data: OptionType,
+    pub name: Box<[u8]>,
+    pub data: OptionType,
 }
 
 /// Also contains the default value, and any variants!
@@ -22,9 +22,9 @@ pub enum OptionType {
     /// Called `combo` in the standard. Avoid using spaces here, it might break things.
     Dropdown {
         /// A list of the variants
-        variants: Box<[Box<str>]>,
-        default: Box<str>,
+        variants: Box<[Box<[u8]>]>,
+        default: Box<[u8]>,
     },
     Button,
-    String(Box<str>),
+    String(Box<[u8]>),
 }

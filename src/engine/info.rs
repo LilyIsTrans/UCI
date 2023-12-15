@@ -8,13 +8,13 @@ use crate::MoveList;
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub struct PV {
-    pub(crate) depth: Option<usize>,
-    pub(crate) seldepth: Option<usize>,
-    pub(crate) time: Option<usize>,
-    pub(crate) nodes: Option<usize>,
-    pub(crate) multi_pv_rank: Option<usize>,
-    pub(crate) score: Option<Score>,
-    pub(crate) moves: MoveList,
+    pub depth: Option<usize>,
+    pub seldepth: Option<usize>,
+    pub time: Option<usize>,
+    pub nodes: Option<usize>,
+    pub multi_pv_rank: Option<usize>,
+    pub score: Option<Score>,
+    pub moves: MoveList,
 }
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -35,9 +35,9 @@ pub enum ScoreType {
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub struct Score {
-    pub(crate) bound_type: ScoreBound,
-    pub(crate) score_type: ScoreType,
-    pub(crate) value: isize,
+    pub bound_type: ScoreBound,
+    pub score_type: ScoreType,
+    pub value: isize,
 }
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -51,7 +51,7 @@ pub enum Info {
     TableBaseHits(usize),
     ShredderBaseHits(usize),
     CPULoad(u16),
-    String(Box<str>),
+    String(Box<[u8]>),
     Refutation(MoveList),
     CurrentLine(Option<usize>, MoveList),
 }

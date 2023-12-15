@@ -26,13 +26,13 @@ pub enum EngineCommand {
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub struct BestMove {
-    best: Move,
-    ponder: Option<Move>,
+    pub best: Move,
+    pub ponder: Option<Move>,
 }
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub enum ID {
-    Author(Box<str>),
-    Name(Box<str>),
+    Author(Box<[u8]>),
+    Name(Box<[u8]>),
 }

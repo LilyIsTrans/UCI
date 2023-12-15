@@ -10,9 +10,9 @@ pub enum OptionType {
     /// Called `spin` in the standard
     Integer(isize),
     /// Called `combo` in the standard. Avoid using spaces here, it might break things.
-    Dropdown(Box<str>),
+    Dropdown(Box<[u8]>),
     Button,
-    String(Box<str>),
+    String(Box<[u8]>),
 }
 /// A single command, sent from the GUI (or other UCI host) to an engine
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -24,7 +24,7 @@ pub enum GUICommand {
     /// Used to wait for the engine to complete potentially blocking operations. Must wait for `EngineCommand::ReadyOk`. If the built in interface is used, this command will be handled by the interface.
     IsReady,
     SetOption {
-        name: Box<str>,
+        name: Box<[u8]>,
         value: OptionType,
     },
     /// Optional feature. Tells the engine the next `position` command will be from a different game.
@@ -47,19 +47,19 @@ pub enum PositionBase {
     /// The default chess start position
     StartPos,
     /// FEN String
-    FEN(Box<str>),
+    FEN(Box<[u8]>),
 }
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub struct Position {
-    base: PositionBase,
-    moves: MoveList,
+    pub base: PositionBase,
+    pub moves: MoveList,
 }
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub struct Register {
-    name: Box<str>,
-    code: Box<str>,
+    pub name: Box<[u8]>,
+    pub code: Box<[u8]>,
 }
