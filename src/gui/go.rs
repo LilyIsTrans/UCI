@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 use crate::MoveList;
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub struct GoCommand {
     /// The standard calls this `searchmoves`
     restrict_first_move_to: Option<MoveList>,

@@ -2,7 +2,7 @@
 use serde::{Deserialize, Serialize};
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub struct EngineOption {
     name: Box<str>,
     data: OptionType,
@@ -10,7 +10,7 @@ pub struct EngineOption {
 
 /// Also contains the default value, and any variants!
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub enum OptionType {
     CheckBox(bool),
     /// Called `spin` in the standard

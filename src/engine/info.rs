@@ -6,7 +6,7 @@ use crate::Move;
 use crate::MoveList;
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub struct PV {
     pub(crate) depth: Option<usize>,
     pub(crate) seldepth: Option<usize>,
@@ -18,7 +18,7 @@ pub struct PV {
 }
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Copy, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub enum ScoreBound {
     Upper,
     Lower,
@@ -26,14 +26,14 @@ pub enum ScoreBound {
 }
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Copy, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub enum ScoreType {
     CentiPawns,
     ForcedMateMoves,
 }
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Copy, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub struct Score {
     pub(crate) bound_type: ScoreBound,
     pub(crate) score_type: ScoreType,
@@ -41,7 +41,7 @@ pub struct Score {
 }
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub enum Info {
     PV(PV),
     CurrentMove(Move),

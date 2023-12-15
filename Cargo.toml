@@ -1,7 +1,8 @@
 [package]
 name = "uci"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
+authors = ["Lily McCabe <lily@lilymccabe.ca>"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -13,5 +14,6 @@ serde = ["dep:serde"]
 [dependencies]
 serde = { version = "1.0.193", features = ["derive"], optional = true}
 thiserror = "1.0.50"
-tokio = { version = "1.35.0", features = ["tracing"] }
+tokio = { version = "1.35.0", features = ["tracing", "io-std", "io-util", "macros", "sync"] }
+tokio-util = { version = "0.7.10", features = ["codec", "io", "io-util"] }
 tracing = { version = "0.1.40", features = ["log", "async-await"] }

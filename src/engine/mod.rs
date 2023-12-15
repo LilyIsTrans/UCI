@@ -9,7 +9,7 @@ pub mod option;
 /// A single command, sent from the Engine
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub enum EngineCommand {
     Registration(authentication::Registration),
     CopyProtection(authentication::CopyProtection),
@@ -19,17 +19,19 @@ pub enum EngineCommand {
     Option(option::EngineOption),
     ReadyOk,
     UCIOk,
+    /// Not really a UCI command. Indicates that the stream has reached EOF, most likely meaning that the engine has unexpectedly crashed.
+    EOF,
 }
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Copy, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub struct BestMove {
     best: Move,
     ponder: Option<Move>,
 }
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub enum ID {
     Author(Box<str>),
     Name(Box<str>),

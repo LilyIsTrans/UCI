@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 use crate::MoveList;
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub enum OptionType {
     CheckBox(bool),
     /// Called `spin` in the standard
@@ -16,7 +16,7 @@ pub enum OptionType {
 }
 /// A single command, sent from the GUI (or other UCI host) to an engine
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub enum GUICommand {
     UCI,
     /// `true` indicates debug mode on, `false` indicates debug mode off
@@ -35,12 +35,14 @@ pub enum GUICommand {
     Quit,
     Stop,
     Register(Option<Register>),
+    /// Not really a UCI command. Indicates that the stream has reached EOF.
+    EOF,
 }
 
 pub mod go;
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub enum PositionBase {
     /// The default chess start position
     StartPos,
@@ -49,14 +51,14 @@ pub enum PositionBase {
 }
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub struct Position {
     base: PositionBase,
     moves: MoveList,
 }
 
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub struct Register {
     name: Box<str>,
     code: Box<str>,
